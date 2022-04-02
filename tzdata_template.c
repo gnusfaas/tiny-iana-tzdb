@@ -1,9 +1,10 @@
 // -----------------------------------------------------------------------------
-/// \file                  tzdata2013d_template.c
+/// \file                  tzdata_template.c
 /// \brief                 File access interceptor code
 ///                        Implements the access to tzdata binary db
 /// \author                Sreejith.Naarakathil@gmail.com
 // -----------------------------------------------------------------------------
+#include <string.h>
 
 int tz_access(const char *path, int amode)
 {
@@ -84,7 +85,28 @@ int tz_dump(void)
 
 void tz_set_time_zone(int tz_id)
 {
+   debug_print("\nTZ ID: %d\n", tz_id);
    locale_tz_id = tz_id;
    (*tz_set_fp[tz_id])();
 }
 
+void tz_set_time_zone_by_name(const char *tzname)
+{
+   int tz_id=0;
+   size_t num_tz = sizeof(locale_tz_names);
+   debug_print("\nTZ Name: %s\n", tzname);
+
+   // Find TZ ID from TZ Name
+   for(tz_id=0; tz_id<num_tz; tz_id++)
+   {
+      if(strcmp(tzname, locale_tz_names[tz_id]) == 0)
+      {
+         break;
+      }
+   }
+
+   // Set locale
+   debug_print("\nTZ ID: %d\n", tz_id);
+   locale_tz_id = tz_id;
+   (*tz_set_fp[tz_id])();
+}

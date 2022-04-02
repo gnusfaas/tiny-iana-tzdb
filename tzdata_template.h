@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-/// \file                  tzdata2013d_template.h
+/// \file                  tzdata_template.h
 /// \brief                 File access interceptor code
 ///                        Implements the access to tzdata binary db
 /// \author                Sreejith.Naarakathil@gmail.com
