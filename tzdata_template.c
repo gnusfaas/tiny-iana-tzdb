@@ -6,7 +6,9 @@
 // -----------------------------------------------------------------------------
 #include <string.h>
 
-int tz_access(const char *path, int amode)
+// In 2022a tzdb, there is a conflicting declaration for 'tz_access' somewhere in the source or standard header files.
+// This is a quick workaround.
+int tz_access1(const char *path, int amode)
 {
    int ret = -1;                
    debug_print ("Access %s\n",path);
@@ -18,7 +20,9 @@ int tz_access(const char *path, int amode)
 
 }
 
-int tz_open(const char *path, int oflag, ... )
+// In 2022a tzdb, there is a conflicting declaration for 'tz_open' somewhere in the source or standard header files.
+// This is a quick workaround.
+int tz_open1(const char *path, int oflag, ... )
 {
    int ret = -1;                
    debug_print ("Open %s\n",path);
@@ -83,6 +87,7 @@ int tz_dump(void)
    return i;
 }
 
+// tz_id = (<line number of the required time zone name in tz_included.txt> - 1)
 void tz_set_time_zone(int tz_id)
 {
    debug_print("\nTZ ID: %d\n", tz_id);

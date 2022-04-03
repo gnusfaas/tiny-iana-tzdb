@@ -9,7 +9,6 @@
 
 extern struct tm *tz_localtime(time_t const *);
 extern void tz_set_time_zone_by_name(const char *tzname);
-extern void tz_set_time_zone(int tz_id);
 
 int main()
 {
@@ -19,8 +18,8 @@ int main()
     now = time(NULL);
 
     // Set time zone
-    // tz_set_time_zone_by_name("America/New_York");
-    tz_set_time_zone(2);
+    tz_set_time_zone_by_name("Asia/Kolkata");
+    
     printf("Current unix timestamp: %lld\n", now);
 
     // Calculate local time for the given time zone
